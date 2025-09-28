@@ -1,19 +1,13 @@
 import { fetchCoordinates } from '@lib/utils/geocode'
-import { FormValues } from 'app/component/TravelSelector/schema'
+import { FormValues } from 'components/component/TravelSelector/schema'
 import { countries } from 'country-flag-icons'
 import { create } from 'zustand'
 
-// export const initialState = {
-//   plans: [{ countries: [], cities: [], startDate: '', endDate: '' }],
-//   travelStyles: []
-// }
 export const initialState = {
-  countries: [],
-  cities: [],
-  startDate: '',
-  endDate: '',
+  plans: [{ countries: [], cities: [], startDate: '', endDate: '' }],
   travelStyles: []
 }
+
 interface TravelInfoStore extends FormValues {
   setTravelInfo: (info: Partial<FormValues>) => void
   clearTravelInfo: () => void

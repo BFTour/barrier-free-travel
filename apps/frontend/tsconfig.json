@@ -21,10 +21,18 @@
     "baseUrl": ".",
     "paths": {
       "@shadcn/ui": ["components/ui"],
+      "@components/*": ["components/component/*"],
       "@utils/*": ["utils/*"],
-      "@lib/*": ["lib/*"]
+      "@lib/*": ["lib/*"],
+      "@stores/*": ["stores/*"]
     }
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "schema"],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "schema"
+  ],
   "exclude": ["node_modules"]
 }
