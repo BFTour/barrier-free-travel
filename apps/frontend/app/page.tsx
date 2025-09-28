@@ -1,4 +1,4 @@
-import TravelView from './component/TravelView'
+import TravelView from '../components/component/TravelView'
 
 export default function Home() {
   return (
