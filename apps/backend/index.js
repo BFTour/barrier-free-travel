@@ -48,8 +48,6 @@ app.post('/api/recommend', async (req, res) => {
     }
 });
 
-// 서버 시작
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Local Access: http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
