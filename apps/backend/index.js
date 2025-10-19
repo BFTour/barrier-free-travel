@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const { generateTripPlan, validateAndRefineTripPlan } = require('./services/gpt');
 
 const app = express();
@@ -9,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 // 미들웨어 설정
 app.use(express.json());
+app.use(cors({ origin: process.env.FRONTEND_ORIGIN || 'http://localhost:3001' }));
 
 // 헬스 체크 라우트
 app.get('/', (req, res) => {
