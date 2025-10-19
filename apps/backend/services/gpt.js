@@ -59,8 +59,8 @@ const tripPlanSchema = {
 };
 
 async function generateTripPlan(userData, mode = 'initial', refinementContext = '') {
-    const { country, city, startDate, endDate, travelStyle, isWheelchairUser } = userData;
-    const isBarrierFree = isWheelchairUser
+    const { country, city, startDate, endDate, travelStyle, checkAccessibility } = userData;
+    const isBarrierFree = checkAccessibility
         ? '휠체어 접근성을 최우선으로 고려해야 합니다.'
         : '일반적인 장소를 추천합니다.';
 
@@ -117,7 +117,7 @@ async function generateTripPlan(userData, mode = 'initial', refinementContext = 
 }
 
 async function validateAndRefineTripPlan(initialPlan, userData) {
-    if (!userData.isWheelchairUser) {
+    if (!userData.checkAccessibility) {
         console.log('휠체어 사용자가 아니므로 접근성 검증을 건너뜁니다.');
         return initialPlan;
     }
