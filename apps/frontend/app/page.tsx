@@ -2,16 +2,13 @@ import TravelView from '../components/component/TravelView'
 
 export default function Home() {
   return (
-    <main>
-      <article
-      // style={{
-      //   backgroundImage: "url('/beach-wheelchair.jpg')"
-      // }}
-      // className="aspect-[16/9] w-full bg-cover bg-center"
-      >
-        <TravelView />
-      </article>
-    </main>
+    <>
+      <main>
+        <article>
+          <TravelView />
+        </article>
+      </main>
+    </>
   )
 }
 
