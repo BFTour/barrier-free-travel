@@ -1,3 +1,4 @@
+import { Plane } from 'lucide-react'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
@@ -24,11 +25,33 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className="flex h-screen w-screen flex-col items-center justify-center"
+    >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} flex h-screen w-full flex-col items-center justify-between antialiased`}
       >
+        <header className="flex h-[200px] w-full items-end justify-center gap-3 text-[#285298]">
+          <Plane
+            height="112px"
+            width="112px"
+            strokeWidth={1.5}
+            className="tracking-tight drop-shadow-lg"
+          />
+          <div className="flex flex-col items-center justify-end gap-6">
+            <h1 className="text-6xl font-bold tracking-tight drop-shadow-lg">
+              BFTour
+            </h1>
+            <h3 className="text-lg tracking-wide">
+              배리어프리 개인화 여행 지원 플랫폼
+            </h3>
+          </div>
+        </header>
         <PostHogProvider>{children}</PostHogProvider>
+        <footer className="flex h-[100px] w-full items-center justify-center bg-gray-200">
+          <p>© 2025 BFTour. All rights reserved.</p>
+        </footer>
       </body>
     </html>
   )

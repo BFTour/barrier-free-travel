@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const { generateTripPlan, validateAndRefineTripPlan } = require('./services/gpt');
 
 const app = express();
@@ -9,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 // 미들웨어 설정
 app.use(express.json());
+app.use(cors({ origin: process.env.FRONTEND_ORIGIN || 'http://localhost:3001' }));
 
 // 헬스 체크 라우트
 app.get('/', (req, res) => {
@@ -18,7 +20,7 @@ app.get('/', (req, res) => {
 // 주요 기능 라우트: 여행 계획 생성 및 검증
 app.post('/api/recommend', async (req, res) => {
     // 1. 사용자 입력 받기
-    const { country, city, startDate, endDate, travelStyle, isWheelchairUser } = req.body;
+    const { country, city, startDate, endDate, travelStyle } = req.body;
 
     if (!country || !city || !startDate || !endDate || !travelStyle) {
         return res.status(400).json({ error: '필수 입력값 (국가, 도시, 기간, 스타일)이 누락되었습니다.' });
