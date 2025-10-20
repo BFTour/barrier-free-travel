@@ -31,11 +31,12 @@ const tripPlanSchema = {
                   name: { type: "string", description: "장소 이름 (Google Maps에서 검색 가능해야 함)" },
                   time: { type: "string", description: "방문 시간 (HH:mm 형식)" },
                   coords: { 
-                    type: "array",
-                    items: { type: "number" },
-                    minItems: 2,
-                    maxItems: 2,
-                    description: "[위도, 경도]"
+                    type: "object",
+                    properties: {
+                      lat: { type: "number", description: "위도" },
+                      lng: { type: "number", description: "경도" }
+                    },
+                    required: ["lat", "lng"],
                   },
                   accessible: { type: "boolean", description: "휠체어 접근성 여부 (true/false)" },
                   description: { 
