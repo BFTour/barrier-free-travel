@@ -29,7 +29,7 @@ export default function TravelMap() {
   }
 
   // 지도 중심을 첫 번째 도시로
-  const center: [number, number] = plans[0].coords as [number, number]
+  const center = plans[0].coords
   const positions = plans.map((p) => p.coords) as LatLngExpression[]
 
   return (
@@ -48,7 +48,7 @@ export default function TravelMap() {
         {plans.map((plan, idx) => (
           <Marker
             key={idx}
-            position={plan.coords as [number, number]}
+            position={plan.coords}
             icon={mapFlagIcon(plan.country)}
           >
             <Popup>

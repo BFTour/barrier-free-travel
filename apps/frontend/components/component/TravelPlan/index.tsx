@@ -6,24 +6,16 @@ import PlanSummary from './component/PlanSummary'
 import PlanCard from './component/Plancard'
 
 export default function TravelPlan() {
-  const { travel, fetchTravel } = useTravelPlanStore()
+  const { travelPlan } = useTravelPlanStore()
 
-  useEffect(() => fetchTravel(), [fetchTravel])
-
-  if (!travel) {
-    return (
-      <div className="flex justify-center py-24">
-        여행 계획을 불러오는 중입니다...
-      </div>
-    )
-  }
+  if (!travelPlan) return <div>여행 계획을 불러오는 중입니다...</div>
 
   return (
     <div className="max-w-4xl space-y-6 p-6">
-      <PlanSummary travel={travel} />
+      <PlanSummary travel={travelPlan} />
 
       <div className="w-[500px] space-y-2">
-        {travel.itinerary.map((day) => (
+        {travelPlan.itinerary.map((day) => (
           <PlanCard key={day.date} day={day} />
         ))}
       </div>
