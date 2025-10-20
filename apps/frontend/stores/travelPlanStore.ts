@@ -7,7 +7,7 @@ export interface Place {
   city: string
   country: string
   countryCode: string
-  coords: [number, number]
+  coords: { lat: number; lng: number }
   accessible: boolean
   description?: string
 }
@@ -27,16 +27,11 @@ export type Travel = {
 }
 
 interface TravelStore {
-  travel: Travel | null
-  selectedCoords: [number, number] | null
-  fetchTravel: () => void
-  setSelectedCoords: (coords: [number, number]) => void
+  travelPlan: Travel | null
+  setTravelPlan: (travel: Travel) => void
 }
 
 export const useTravelPlanStore = create<TravelStore>((set) => ({
-  travel: null,
-  selectedCoords: null,
-  fetchTravel: () => set({ travel: mockData }),
-  setSelectedCoords: (coords: [number, number]) =>
-    set({ selectedCoords: coords })
+  travelPlan: null,
+  setTravelPlan: (travel: Travel) => set({ travelPlan: travel })
 }))
