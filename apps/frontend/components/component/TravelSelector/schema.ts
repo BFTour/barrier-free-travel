@@ -5,8 +5,8 @@ export const FormSchema = z.object({
   plans: z
     .array(
       z.object({
-        country: z.enum(['KR', 'JP', 'US', 'FR']),
-        city: z.string(),
+        countries: z.enum(['KR', 'JP', 'US', 'FR']),
+        cities: z.string(),
         startDate: z
           .string()
           .nonempty('출발일을 선택하세요.')

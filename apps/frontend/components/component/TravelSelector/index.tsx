@@ -1,8 +1,8 @@
 'use client'
 
-import { Switch } from 'components/ui/switch'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Input, Label } from '@shadcn/ui'
+import { Switch } from 'components/ui/switch'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -57,14 +57,17 @@ export default function TravelSelector() {
   useEffect(() => {
     plans.forEach((plan, idx) => {
       const availableCities =
-        countryCityMap[plan.country as CountryKey]?.cities ?? []
-      if (plan.city && !availableCities.find((c) => c.value === plan.city)) {
+        countryCityMap[plan.countries as CountryKey]?.cities ?? []
+      if (
+        plan.cities &&
+        !availableCities.find((c) => c.value === plan.cities)
+      ) {
         // 현재 도시는 해당 나라의 도시가 아닐 경우 초기화
-        setValue(`plans.${idx}.city`, availableCities[0]?.value ?? '')
+        setValue(`plans.${idx}.cities`, availableCities[0]?.value ?? '')
       }
       // country가 비어있으면 city도 공백 처리 가능
-      if (!plan.country) {
-        setValue(`plans.${idx}.city`, '')
+      if (!plan.countries) {
+        setValue(`plans.${idx}.cities`, '')
       }
     })
   }, [plans, setValue])
@@ -88,7 +91,7 @@ export default function TravelSelector() {
         <div className="space-y-4">
           <Label>여행 계획</Label>
           {fields.map((field, idx) => {
-            const country = (field.country as CountryKey) || 'KR'
+            const country = (field.countries as CountryKey) || 'KR'
             const availableCities = countryCityMap[country]?.cities ?? []
             const isExpanded = expandedIndex === idx
             return (
@@ -102,10 +105,10 @@ export default function TravelSelector() {
                   onClick={() => setExpandedIndex(isExpanded ? null : idx)}
                 >
                   <span className="font-medium">
-                    {field.city
+                    {field.cities
                       ? `${countryCityMap[country]?.label} - ${
-                          availableCities.find((c) => c.value === field.city)
-                            ?.label ?? field.city
+                          availableCities.find((c) => c.value === field.cities)
+                            ?.label ?? field.cities
                         }`
                       : `계획 ${idx + 1}`}
                   </span>
@@ -138,10 +141,10 @@ export default function TravelSelector() {
                       <div className="space-y-4 p-4">
                         {/* Country */}
                         <div className={defaultClassName}>
-                          <Label htmlFor={`plans.${idx}.country`}>국가</Label>
+                          <Label htmlFor={`plans.${idx}.countries`}>국가</Label>
                           <select
-                            id={`plans.${idx}.country`}
-                            {...register(`plans.${idx}.country`)}
+                            id={`plans.${idx}.countries`}
+                            {...register(`plans.${idx}.countries`)}
                             className="rounded border px-2 py-1"
                           >
                             <option value="">국가 선택</option>
@@ -151,14 +154,16 @@ export default function TravelSelector() {
                               </option>
                             ))}
                           </select>
-                          <ErrorMessage error={errors.plans?.[idx]?.country} />
+                          <ErrorMessage
+                            error={errors.plans?.[idx]?.countries}
+                          />
                         </div>
                         {/* City */}
                         <div className={defaultClassName}>
-                          <Label htmlFor={`plans.${idx}.city`}>도시</Label>
+                          <Label htmlFor={`plans.${idx}.cities`}>도시</Label>
                           <select
-                            id={`plans.${idx}.city`}
-                            {...register(`plans.${idx}.city`)}
+                            id={`plans.${idx}.cities`}
+                            {...register(`plans.${idx}.cities`)}
                             className="rounded border px-2 py-1"
                           >
                             <option value="">도시 선택</option>
@@ -168,7 +173,7 @@ export default function TravelSelector() {
                               </option>
                             ))}
                           </select>
-                          <ErrorMessage error={errors.plans?.[idx]?.city} />
+                          <ErrorMessage error={errors.plans?.[idx]?.cities} />
                         </div>
                         {/* Dates */}
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -211,8 +216,8 @@ export default function TravelSelector() {
             onClick={() => {
               const newIndex = fields.length
               append({
-                country: 'KR',
-                city: '',
+                countries: 'KR',
+                cities: '',
                 startDate: '',
                 endDate: ''
               })
@@ -278,13 +283,14 @@ export default function TravelSelector() {
               <div key={i}>
                 <p>
                   <strong>국가:</strong>{' '}
-                  {countryCityMap[p.country as CountryKey]?.label ?? p.country}
+                  {countryCityMap[p.countries as CountryKey]?.label ??
+                    p.countries}
                 </p>
                 <p>
                   <strong>도시:</strong>{' '}
                   {Object.values(countryCityMap)
                     .flatMap((cc) => cc.cities)
-                    .find((c) => c.value === p.city)?.label ?? p.city}
+                    .find((c) => c.value === p.cities)?.label ?? p.cities}
                 </p>
                 <p>
                   <strong>기간:</strong>{' '}
