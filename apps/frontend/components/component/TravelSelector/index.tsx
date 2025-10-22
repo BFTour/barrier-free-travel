@@ -9,7 +9,12 @@ import React, { useEffect, useState } from 'react'
 import { useForm, useFieldArray, Controller } from 'react-hook-form'
 import { useTravelInfo } from 'stores/travelnfo'
 import ErrorMessage from './component/ErrorMessage'
-import { countryCityMap, CountryKey, TRAVEL_STYLES } from './constants'
+import {
+  countryCityMap,
+  CountryKey,
+  DISABILITY_TYPES,
+  TRAVEL_STYLES
+} from './constants'
 import { FormSchema, FormValues } from './schema'
 
 const defaultClassName = 'flex flex-col gap-2'
@@ -252,6 +257,32 @@ export default function TravelSelector() {
           </div>
           <ErrorMessage error={errors.travelStyles} />
         </div>
+
+        {/* Disabled Type */}
+        <div className={defaultClassName}>
+          <Label>장애 유형 (복수 선택 가능)</Label>
+          <div className="flex flex-wrap gap-3">
+            {DISABILITY_TYPES.map((type) => (
+              <div key={type} className="flex items-center gap-2">
+                <input
+                  id={`disability-${type}`}
+                  type="checkbox"
+                  value={type}
+                  {...register('disabilityTypes')}
+                  className="h-4 w-4 rounded border-slate-300"
+                />
+                <label
+                  htmlFor={`disability-${type}`}
+                  className="text-sm text-slate-700"
+                >
+                  {type}
+                </label>
+              </div>
+            ))}
+          </div>
+          <ErrorMessage error={errors.disabilityTypes} />
+        </div>
+
         <div className={defaultClassName}>
           <Label>휠체어 사용 여부</Label>
           <Controller
@@ -303,6 +334,12 @@ export default function TravelSelector() {
               <strong>스타일:</strong>{' '}
               {preview.travelStyles
                 .map((s) => TRAVEL_STYLES.find((t) => t.id === s)?.label)
+                .join(', ')}
+            </p>
+            <p>
+              <strong>장애 유형:</strong>{' '}
+              {preview.disabilityTypes
+                .map((d) => DISABILITY_TYPES.find((t) => t === d))
                 .join(', ')}
             </p>
             <p>
