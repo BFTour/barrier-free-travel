@@ -1,5 +1,5 @@
 import { check, z } from 'zod'
-import { TRAVEL_STYLES } from './constants'
+import { DISABILITY_TYPES, TRAVEL_STYLES } from './constants'
 
 export const FormSchema = z.object({
   plans: z
@@ -47,6 +47,9 @@ export const FormSchema = z.object({
       )
     )
     .min(1, '여행 스타일을 하나 이상 선택하세요.'),
+  disabilityTypes: z
+    .array(z.enum(DISABILITY_TYPES))
+    .min(1, '장애 유형을 하나 이상 선택하세요.'),
   checkAccessibility: z.boolean().default(false).optional()
 })
 

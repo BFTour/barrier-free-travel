@@ -44,3 +44,20 @@ export const TRAVEL_STYLES = [
   { id: 'food', label: '미식' },
   { id: 'nature', label: '자연' }
 ] as const
+
+export const DISABILITY_TYPES = [
+  '뇌병변장애',
+  '시각장애',
+  '청각장애',
+  '언어장애',
+  '안면장애',
+  '신장장애',
+  '심장장애',
+  '호흡기장애',
+  '간장애',
+  '장루·요루장애',
+  '뇌전증장애',
+  '지적장애',
+  '자폐성장애',
+  '정신장애'
+] as const
