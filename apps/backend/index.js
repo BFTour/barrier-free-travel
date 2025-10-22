@@ -37,10 +37,8 @@ app.post('/api/recommend', async (req, res) => {
 
         // 4. 최종 결과 반환
         res.json({
-            message: '배리어프리 여행 계획이 성공적으로 생성/검증되었습니다. 🎉',
             plan: finalTripPlan
         });
-
     } catch (error) {
         console.error('전체 여행 계획 처리 중 오류 발생:', error);
         res.status(500).json({ 
