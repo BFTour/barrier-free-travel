@@ -1,0 +1,115 @@
+{
+  "message": "배리어프리 여행 계획이 성공적으로 생성/검증되었습니다. 🎉",
+  "plans": {
+    "destination": "busan",
+    "startDate": "2025-10-01",
+    "endDate": "2025-10-22",
+    "theme": "일반",
+    "itinerary": [
+      {
+        "date": "2025-10-01",
+        "dayOfWeek": "수",
+        "places": [
+          {
+            "name": "부산역",
+            "time": "10:00",
+            "coords": { "lat": 35.1151, "lng": 129.0416 },
+            "accessible": true,
+            "description": "부산역은 휠체어 이용자를 위한 엘리베이터와 경사로가 완비되어 있으며, 장애인 전용 화장실이 있습니다. 역사 내 이동이 편리합니다.",
+            "city": "busan",
+            "country": "KR",
+            "countryCode": "KR"
+          },
+          {
+            "name": "롯데백화점 광복점",
+            "time": "13:00",
+            "coords": { "lat": 35.0982, "lng": 129.0337 },
+            "accessible": true,
+            "description": "백화점 전 구역에 엘리베이터, 장애인 화장실, 자동문, 넓은 통로가 있어 휠체어 이동이 편리합니다.",
+            "city": "busan",
+            "country": "KR",
+            "countryCode": "KR"
+          }
+        ]
+      },
+      {
+        "date": "2025-10-02",
+        "dayOfWeek": "목",
+        "places": [
+          {
+            "name": "해운대 해수욕장",
+            "time": "10:00",
+            "coords": { "lat": 35.1587, "lng": 129.1604 },
+            "accessible": true,
+            "description": "해수욕장 입구에 경사로가 설치되어 있고, 장애인 화장실과 휠체어 대여 서비스가 제공됩니다. 해변 산책로도 휠체어 접근이 가능합니다.",
+            "city": "busan",
+            "country": "KR",
+            "countryCode": "KR"
+          },
+          {
+            "name": "동백섬",
+            "time": "14:00",
+            "coords": { "lat": 35.1553, "lng": 129.1467 },
+            "accessible": true,
+            "description": "동백섬 산책로는 평탄한 길이 많아 휠체어 접근이 가능하며, 입구와 주요 지점에 경사로가 있습니다. 장애인 화장실도 구비되어 있습니다.",
+            "city": "busan",
+            "country": "KR",
+            "countryCode": "KR"
+          }
+        ]
+      },
+      {
+        "date": "2025-10-03",
+        "dayOfWeek": "금",
+        "places": [
+          {
+            "name": "부산 아쿠아리움 (SEA LIFE 부산아쿠아리움)",
+            "time": "11:00",
+            "coords": { "lat": 35.1583, "lng": 129.1586 },
+            "accessible": true,
+            "description": "아쿠아리움 내부에 엘리베이터와 경사로가 설치되어 있어 휠체어 이동이 편리합니다. 장애인 화장실도 마련되어 있습니다.",
+            "city": "busan",
+            "country": "KR",
+            "countryCode": "KR"
+          },
+          {
+            "name": "신세계 센텀시티",
+            "time": "15:00",
+            "coords": { "lat": 35.1694, "lng": 129.1296 },
+            "accessible": true,
+            "description": "초대형 쇼핑몰로, 전 구역에 엘리베이터, 자동문, 장애인 화장실, 넓은 복도가 있어 휠체어 이동이 매우 편리합니다.",
+            "city": "busan",
+            "country": "KR",
+            "countryCode": "KR"
+          }
+        ]
+      },
+      {
+        "date": "2025-10-04",
+        "dayOfWeek": "토",
+        "places": [
+          {
+            "name": "오시리아 관광단지",
+            "time": "10:00",
+            "coords": { "lat": 35.1882, "lng": 129.2246 },
+            "accessible": true,
+            "description": "오시리아 관광단지는 주요 시설에 휠체어 접근이 가능하며, 곳곳에 경사로와 장애인 화장실이 설치되어 있습니다.",
+            "city": "busan",
+            "country": "KR",
+            "countryCode": "KR"
+          },
+          {
+            "name": "국립부산과학관",
+            "time": "14:00",
+            "coords": { "lat": 35.2305, "lng": 129.0912 },
+            "accessible": true,
+            "description": "과학관 전 구역에 엘리베이터, 경사로, 장애인 화장실이 완비되어 있습니다. 휠체어로 모든 전시 관람이 가능합니다.",
+            "city": "busan",
+            "country": "KR",
+            "countryCode": "KR"
+          }
+        ]
+      }
+    ]
+  }
+}
