@@ -49,11 +49,12 @@ const tripPlanSchema = {
                     name: { type: "string", description: "장소 이름 (Google Maps에서 검색 가능해야 함)" },
                     time: { type: "string", description: "방문 시간 (HH:mm 형식)" },
                     coords: { 
-                        type: "array",
-                        items: { type: "number" },
-                        minItems: 2,
-                        maxItems: 2,
-                        description: "[위도, 경도]"
+                        type: "object",
+                        properties: {
+                            lat: { type: "number", description: "위도" },
+                            lng: { type: "number", description: "경도" }
+                        },
+                        required: ["lat", "lng"],
                     },
                     description: {
                         type: "string",
@@ -242,7 +243,7 @@ async function generateTripPlan(userData, mode = 'initial', refinementContext = 
         city, 
         startDate, 
         endDate, 
-        travelStyle, 
+        travelStyles, 
         disabilityTypes = [], 
         isWheelchairUser = false 
     } = userData;
@@ -261,7 +262,7 @@ async function generateTripPlan(userData, mode = 'initial', refinementContext = 
         조건:
         - 기간: ${startDate}부터 ${endDate}까지
         - 도시: ${city}, 국가: ${country}
-        - 여행 스타일: ${travelStyle}
+        - 여행 스타일: ${travelStyles.join(', ')}
         - 접근성: ${disabilityContext}
        
         **매우 중요 - 장소 이름 작성 규칙:**

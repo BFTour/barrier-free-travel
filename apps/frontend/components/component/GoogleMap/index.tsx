@@ -25,9 +25,9 @@ export default function MapWithMarkersAndLines() {
   const [shouldCenterOnMarker, setShouldCenterOnMarker] = useState(false)
 
   const { travelPlan } = useTravelPlanStore()
-  const origin = travelPlan?.itinerary[0].places[0].coords // || [37.7749, -122.4194]
+  const origin = travelPlan?.itinerary[0].places[0].coords
   useEffect(() => {
-    const newMarkers: MarkerData[] = travelPlan.itinerary
+    const newMarkers: MarkerData[] = travelPlan?.itinerary
       .map(({ places }) => {
         return places.map((place, index) => ({
           id: `${place.name}-${index}`,
@@ -38,6 +38,7 @@ export default function MapWithMarkersAndLines() {
       })
       .flat()
     setMarkers(newMarkers)
+    setSelectedMarkerId(newMarkers[0]?.id || null)
     setRoutes([
       {
         ...routesMockData[0],
@@ -77,7 +78,7 @@ export default function MapWithMarkersAndLines() {
           defaultZoom={12}
           defaultCenter={origin}
           center={
-            selectedMarker && shouldCenterOnMarker
+            selectedMarker && shouldCenterOnMarker && selectedMarker.position
               ? selectedMarker.position
               : undefined
           }

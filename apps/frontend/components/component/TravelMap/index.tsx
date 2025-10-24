@@ -1,16 +1,23 @@
 'use client'
 
+import { useTravelPlanStore } from '@stores/travelPlanStore'
 import { LatLngExpression } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, Marker, Polyline, Popup } from 'react-leaflet'
 import MapMarker from './component/MapMarker'
-import { mockData } from './constants'
 import { PlanType } from './type'
 import { mapFlagIcon } from './utils'
 
-// TODO: add loading state
 export default function TravelMap() {
-  const plans: PlanType[] = mockData.itinerary
+  const { travelPlan } = useTravelPlanStore()
+  if (travelPlan?.itinerary?.length === 0) {
+    return (
+      <p className="mt-10 text-center text-slate-600">
+        저장된 여행 계획이 없습니다.
+      </p>
+    )
+  }
+  const plans: PlanType[] = travelPlan?.itinerary
     .map((plan) =>
       plan.places.map((place) => ({
         startDate: plan.date,
@@ -18,15 +25,18 @@ export default function TravelMap() {
         ...place
       }))
     )
-    .flat()
-
-  if (plans.length === 0) {
-    return (
-      <p className="mt-10 text-center text-slate-600">
-        저장된 여행 계획이 없습니다.
-      </p>
-    )
-  }
+    .flat() ?? [
+    {
+      name: '',
+      coords: { lat: 0, lng: 0 },
+      city: '',
+      country: '',
+      countryCode: '',
+      startDate: '',
+      endDate: '',
+      accessible: false
+    }
+  ]
 
   // 지도 중심을 첫 번째 도시로
   const center = plans[0].coords
